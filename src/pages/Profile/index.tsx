@@ -15,6 +15,8 @@ import * as Yup from 'yup';
 import Icon from 'react-native-vector-icons/Feather';
 import getValidationErros from '../../utils/getValidationErros';
 
+import nullAvatarImg from '../../assets/nullAvatarImg.png';
+
 import api from '../../services/api';
 
 import Button from '../../components/Button';
@@ -181,7 +183,12 @@ const SignUp: React.FC = () => {
               <Icon name="chevron-left" size={24} color="#999591" />
             </BackButton>
             <UserAvatarButton onPress={handleUpdateAvatar}>
-              <UserAvatar source={{ uri: user.avatar_url }} />
+              { user.avatar_url &&
+                <UserAvatar source={{ uri: user.avatar_url }} />
+              }
+              { !user.avatar_url &&
+                <UserAvatar source={nullAvatarImg} />
+              }
             </UserAvatarButton>
             <View>
               <Title>Meu perfil</Title>
